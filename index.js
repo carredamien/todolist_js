@@ -1,4 +1,4 @@
-import "./style.css";
+"use strict";
 
 const ul = document.querySelector("ul");
 const form = document.querySelector("form");
@@ -11,19 +11,42 @@ form.addEventListener("submit", event => {
   addTodo(value);
 });
 
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape" && todos.find(t => t.editMode)) {
-    todos.find(t => t.editMode).editMode = false;
-    displayTodo();
-  }
-});
-
 const todos = [
   {
-    text: "Faire du JavaScript",
+    text: "Apprendre VueJs",
     done: true,
     editMode: false
-  }
+  },
+  {
+    text: "faire du JavaScript",
+    done: true,
+    editMode: false
+  },
+  {
+    text: "faire du NodeJs",
+    done: true,
+    editMode: false
+  },
+  {
+    text: "faire du Php",
+    done: true,
+    editMode: false
+  },
+  {
+    text: "Développer un thème WordPress",
+    done: true,
+    editMode: false
+  },
+  {
+    text: "Apprendre Symfony",
+    done: false,
+    editMode: false
+  },
+  {
+    text: "Apprendre Docker",
+    done: false,
+    editMode: false
+  },
 ];
 
 const displayTodo = () => {
@@ -45,7 +68,7 @@ const createTodoElement = (todo, index) => {
   buttonDelete.classList.add("danger");
   const buttonEdit = document.createElement("button");
   buttonEdit.innerHTML = "Edit";
-  buttonEdit.classList.add("primary");
+  buttonEdit.classList.add("success");
   buttonDelete.addEventListener("click", event => {
     event.stopPropagation();
     deleteTodo(index);
@@ -58,16 +81,8 @@ const createTodoElement = (todo, index) => {
     <span class="todo ${todo.done ? "done" : ""}"></span>
     <p class="${todo.done ? "done" : ""}">${todo.text}</p>
   `;
-  let timer;
   li.addEventListener("click", event => {
-    if (event.detail === 1) {
-      timer = setTimeout(() => {
-        toggleTodo(index);
-      }, 200);
-    } else if (event.detail > 1) {
-      clearTimeout(timer);
-      toggleEditMode(index);
-    }
+    toggleTodo(index);
   });
   li.append(buttonEdit, buttonDelete);
   return li;
@@ -78,17 +93,12 @@ const createTodoEditElement = (todo, index) => {
   const input = document.createElement("input");
   input.type = "text";
   input.value = todo.text;
-  input.addEventListener("keydown", event => {
-    if (event.key === "Enter") {
-      editTodo(index, input);
-    }
-  });
   const buttonSave = document.createElement("button");
+  buttonSave.classList.add("primary");
   buttonSave.innerHTML = "Save";
-  buttonSave.classList.add("success");
   const buttonCancel = document.createElement("button");
   buttonCancel.innerHTML = "Cancel";
-  buttonCancel.classList.add("danger");
+  buttonCancel.classList.add("primary");
   buttonCancel.addEventListener("click", event => {
     event.stopPropagation();
     toggleEditMode(index);
@@ -96,8 +106,7 @@ const createTodoEditElement = (todo, index) => {
   buttonSave.addEventListener("click", event => {
     editTodo(index, input);
   });
-  li.append(input, buttonSave, buttonCancel);
-  setTimeout(() => input.focus(), 0);
+  li.append(input, buttonCancel, buttonSave);
   return li;
 };
 
@@ -133,5 +142,31 @@ const editTodo = (index, input) => {
   todos[index].editMode = false;
   displayTodo();
 };
+
+//Lors de l'édition, ajoutez un écouteur pour sauvegarder avec la touche entrée 
+input.addEventListener("keydown", event => {
+  if (event.key === "Enter") {
+    editTodo(index, input);
+  }
+});
+
+//Rendre l'édition possible sur un double clic 
+// li.addEventListener("dblclick", event => {
+//   toggleEditMode(index);
+// });
+
+
+//Empêcher le double clic de changer le statut deux fois de suite de la todo 
+// let timer;
+// li.addEventListener("click", event => {
+//   if (event.detail === 1) {
+//     timer = setTimeout(() => {
+//       toggleTodo(index);
+//     }, 200);
+//   } else if (event.detail > 1) {
+//     clearTimeout(timer);
+//     toggleEditMode(index);
+//   }
+// });
 
 displayTodo();

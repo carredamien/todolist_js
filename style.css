@@ -6,6 +6,9 @@ body {
   display: flex;
   flex-direction: column;
   font-family: arial,sans-serif;
+  background: #2980B9;
+  background: -webkit-linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);
+  background: linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);
 }
 
 p {
@@ -38,26 +41,11 @@ button {
   padding: 5px 15px;
   border: 0px;
   border-radius: 5px;
+  color: #fff;
   cursor: pointer;
   margin: 0 3px;
+  padding: 9px 15px;
   outline: 0;
-  color: white;
-}
-
-.btn-add{
-  background: #4a69bd;
-}
-
-button.danger {
-  background: #eb2f06;
-}
-
-button.primary {
-  background: #4a69bd;
-}
-
-button.success {
-  background: #2ed573;
 }
 
 input {
@@ -84,22 +72,12 @@ li {
   cursor: pointer;
 }
 
-li:hover {
-  background: lightblue;
-  border-radius: 5px;
-  padding: 10px 0px 10px 5px;
-}
-
 li input {
   flex: 1;
 }
 
 li p {
   flex: 1;
-}
-
-li p.done {
-  text-decoration: line-through;
 }
 
 li .todo {
@@ -113,3 +91,26 @@ li .todo {
 li .todo.done {
   background: #333;
 }
+
+li p.done {
+  text-decoration: line-through;
+}
+
+li:hover {
+  background: lightblue;
+  border-radius: 5px;
+  padding: 10px 0px 10px 5px;
+}
+
+button.danger {
+  background: #eb2f06;
+}
+
+button.primary, .btn-add {
+  background: #4a69bd;
+}
+
+button.success {
+  background: #2ed573;
+}
+
