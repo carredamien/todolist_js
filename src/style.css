@@ -1,15 +1,23 @@
 * {
   box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
   font-family: arial,sans-serif;
 }
 
-body{
-  display: flex;
-  flex-direction: column;
-  margin:0;
+p {
+  margin: 0;
+}
+
+body {
+  margin: 0;
   min-height: 100vh;
+  display: flex;
   align-items: center;
-  justify-content: center;
+  margin-top: 5rem;
 }
 
 .container {
@@ -21,22 +29,35 @@ body{
   flex-direction: column;
 }
 
-form { 
+form {
   display: flex;
   margin-bottom: 20px;
 }
 
 button {
-  background: #2980b9;
-  font-weight: bold;
-  color: #fff;
   padding: 5px 15px;
-  border:0;
+  border: 0px;
   border-radius: 5px;
-  margin: 0 3px;
-  padding:9px 20px;
   cursor: pointer;
-  outline:0;
+  margin: 0 3px;
+  outline: 0;
+  color: white;
+}
+
+.btn-add{
+  background: #4a69bd;
+}
+
+button.danger {
+  background: #eb2f06;
+}
+
+button.primary {
+  background: #4a69bd;
+}
+
+button.success {
+  background: #2ed573;
 }
 
 input {
@@ -48,16 +69,25 @@ input {
 
 form input {
   flex: 1;
+  margin-right: 15px;
 }
 
-ul{
+ul {
   padding: 0;
   list-style: none;
 }
 
-li{
+li {
   display: flex;
   align-items: center;
+  padding: 10px 0px;
+  cursor: pointer;
+}
+
+li:hover {
+  background: lightblue;
+  border-radius: 5px;
+  padding: 10px 0px 10px 5px;
 }
 
 li input {
@@ -66,6 +96,10 @@ li input {
 
 li p {
   flex: 1;
+}
+
+li p.done {
+  text-decoration: line-through;
 }
 
 li .todo {
